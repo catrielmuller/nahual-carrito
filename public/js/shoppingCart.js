@@ -10,7 +10,7 @@ function shoppingCart(cartName) {
 
     // save items to local storage when unloading
     var self = this;
-    $(window).unload(function () {
+    $(window).on("unload", function () {
         if (self.clearCart) {
             self.clearItems();
         }
