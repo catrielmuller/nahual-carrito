@@ -39,3 +39,5 @@ PD: las credenciales "pedro" y "secret" estan en el archivo `config/config.json`
 ### Iniciar servidor
 
     node server.js
+
+Fin
