@@ -4,6 +4,8 @@
   "description": "Nahual app carrito | Uruguay 2015",
   "main": "server.js",
   "scripts": {
+    "postinstall": "bower install",
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -14,14 +16,15 @@
   "license": "ISC",
   "homepage": "https://github.com/NahualUY/Carrito",
   "dependencies": {
-    "body-parser": "^1.12.2",
-    "bower": "^1.8.4",
-    "express": "^4.11.1",
+    "body-parser": "1.20.2",
+    "bower": "1.8.14",
+    "dotenv": "16.3.1",
+    "express": "4.18.2",
     "fs": "0.0.2",
-    "path": "^0.11.14",
-    "pg": "^7.4.3",
-    "pg-hstore": "^2.3.2",
-    "sequelize": "^4.38.0",
-    "sequelize-fixtures": "^0.7.0"
+    "path": "0.12.7",
+    "pg": "^8.11.3",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "6.33.0",
+    "sequelize-fixtures": "1.2.0"
   }
 }

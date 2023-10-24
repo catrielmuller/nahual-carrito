@@ -1,9 +1,0 @@
-{
-  "db": {
-    "username": "pedro",
-    "password": "secret",
-    "database": "carrito",
-    "host": "127.0.0.1",
-    "dialect": "postgres"
-  }
-}

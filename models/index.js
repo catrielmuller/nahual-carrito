@@ -1,25 +1,33 @@
 "use strict";
 
-var fs        = require("fs");
-var path      = require("path");
-var Sequelize = require("sequelize");
-var config    = require(__dirname + '/../config/config.json');
-var sequelize = new Sequelize(config.db.database, config.db.username, config.db.password, config.db);
-var db        = {};
+require('dotenv').config();
+const fs = require("fs");
+const path = require("path");
+const Sequelize = require("sequelize");
 
-console.log(__dirname );
+// Models
+const cliente = require("./cliente");
+const unidad = require("./unidad");
+const producto = require("./producto");
 
-fs
-    .readdirSync(__dirname)
-    .filter(function(file) {
-        return (file.match('\\.js')=='.js' && (file !== "index.js"));
-    })
-    .forEach(function(file) {
-        var model = sequelize["import"](path.join(__dirname, file));
-        db[model.name] = model;
-    });
+// DB connection
+const PGHOST = process.env.PGHOST || '127.0.0.1'
+const PGDATABASE = process.env.PGDATABASE || 'carrito'
+const PGUSER = process.env.PGUSER || 'pedro'
+const PGPASSWORD = process.env.PGPASSWORD || 'secret'
+const PGURL = `postgres://${PGUSER}:${PGPASSWORD}@${PGHOST}/${PGDATABASE}`
 
-
+var sequelize = new Sequelize(PGURL, {
+    dialect: 'postgres',
+    dialectOptions: {
+        ssl: true
+    }
+});
+var db = {
+    Cliente: cliente(sequelize, Sequelize.DataTypes),
+    Unidad: unidad(sequelize, Sequelize.DataTypes),
+    Producto: producto(sequelize, Sequelize.DataTypes)
+};
 db["Producto"].belongsTo(db["Unidad"]);
 
 db.sequelize = sequelize;
